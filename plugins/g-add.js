@@ -79,17 +79,12 @@ let handler = async (m, { conn, text, participants, usedPrefix, command }) => {
 handler.help = ['add', '+'].map(v => v + ' nomor,nomor')
 handler.tags = ['group']
 handler.command = /^(add|\+|sendlink)$/i
-handler.owner = true
 
-handler.mods = false
-handler.premium = false
 handler.group = true
-handler.private = false
-
 handler.botAdmin = true
 handler.owner = true
+handler.rowner = true
 
-handler.fail = null
 handler.limit = true
 
 module.exports = handler
