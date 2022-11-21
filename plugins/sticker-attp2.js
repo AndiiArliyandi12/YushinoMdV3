@@ -1,49 +1,15 @@
-/*let handler = m => m
-
-handler.before = async function (m, { match }) {
-    // if (match) return !1
-    if (!m.chat.endsWith('@s.whatsapp.net')) return !0
-    this.anonymous = this.anonymous ? this.anonymous : {}
-    let room = Object.values(this.anonymous).find(room => [room.a, room.b].includes(m.sender) && room.state === 'CHATTING')
-    if (room) {
-        if (/^.*(next|leave|start)/.test(m.text)) return
-        let other = [room.a, room.b].find(user => user !== m.sender)
-        m.copyNForward(other, true, m.quoted && m.quoted.fromMe ? {
-            contextInfo: {
-                ...m.msg.contextInfo,
-                forwardingScore: 1,
-                isForwarded: true,
-                participant: other
-            }
-        } : {})
-    }
-    return !0
+import fetch from 'node-fetch'
+let handler = async (m, { conn, args }) => {
+   let response = args.join(' ').split('|')
+  if (!args[0]) throw 'ᴍᴀꜱᴜᴋᴋᴀɴ ᴛᴇxᴛ'
+  m.reply('ᴘʀᴏꜱᴇꜱ...')
+  let res = `https://api.lolhuman.xyz/api/ttp2?apikey=64333e1c050ced435defe154&text=${response[0]}&apikey=Xynoz`
+  conn.sendFile(m.chat, res, 'xynz.webp', `ꜱᴜᴅᴀʜ ᴊᴀᴅɪ`, m, false)
 }
+handler.help = ['attp2 <teks>']
+handler.tags = ['sticker' , 'premium']
+handler.command = /^(attp2)$/i
+handler.limit = true
+handler.premium = true
 
-module.exports = handler*/
-
-
-    
-
-module.exports = {
-    async before(m, { match }) {
-        // if (match) return !1
-        if (!m.chat.endsWith('@s.whatsapp.net')) return !0
-        this.anonymous = this.anonymous ? this.anonymous : {}
-        let room = Object.values(this.anonymous).find(room => [room.a, room.b].includes(m.sender) && room.state === 'CHATTING')
-        if (room) {
-            if (/^.*(next|leave|start)/.test(m.text)) return
-            let other = [room.a, room.b].find(user => user !== m.sender)
-           await this.delay(1000)
-            m.copyNForward(other, true, m.quoted && m.quoted.fromMe ? {
-                contextInfo: {
-                    ...m.msg.contextInfo,
-                    forwardingScore: 1,
-                    isForwarded: true,
-                    participant: other
-                }
-            } : {})
-        }
-        return !0
-    }
-}
+export default handler
